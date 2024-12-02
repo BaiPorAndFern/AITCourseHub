@@ -1,0 +1,33 @@
+services:
+  backend:
+    container_name: aitcoursehub_backend
+    build:
+      context: .  # Use the current directory as the context
+      dockerfile: my-node-backend/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app  # Optional: for hot-reloading during development
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/studentsdb  # Adjust based on your MongoDB setup
+    networks:
+    - aitcoursehub_network
+
+  frontend:
+    container_name: aitcoursehub_web
+    build:
+      context: .  # Use the current directory as the context
+      dockerfile: app-angular-frontend/Dockerfile
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend  # Ensure backend is started before frontend
+    networks:
+    - aitcoursehub_network
+
+volumes:
+  mongodb_data:
+
+networks:
+  aitcoursehub_network:
+    external: true
