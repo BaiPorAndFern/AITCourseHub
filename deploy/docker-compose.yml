@@ -1,6 +1,6 @@
 services:
   backend:
-    container_name: aitcoursehub_backend
+    container_name: helperwecare_backend
     build:
       context: .  # Use the current directory as the context
       dockerfile: my-node-backend/Dockerfile
@@ -11,10 +11,10 @@ services:
     environment:
       - MONGO_URI=mongodb://mongodb:27017/studentsdb  # Adjust based on your MongoDB setup
     networks:
-    - aitcoursehub_network
+    - helperwecare_network
 
   frontend:
-    container_name: aitcoursehub_web
+    container_name: helperwecare_web
     build:
       context: .  # Use the current directory as the context
       dockerfile: app-angular-frontend/Dockerfile
@@ -23,11 +23,11 @@ services:
     depends_on:
       - backend  # Ensure backend is started before frontend
     networks:
-    - aitcoursehub_network
+    - helperwecare_network
 
 volumes:
   mongodb_data:
 
 networks:
-  aitcoursehub_network:
+  helperwecare_network:
     external: true

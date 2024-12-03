@@ -4,14 +4,18 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthModule } from './auth/auth.module';
+import { SuccessComponent } from './success/success.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AuthModule,
     HttpClientModule
   ],
   providers: [

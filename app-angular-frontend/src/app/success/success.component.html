@@ -1,0 +1,20 @@
+<p>success works!</p>
+
+<button (click)="changeShowNames()">{{ buttonLabel }}</button>
+
+
+<div *ngIf="showNames">
+   <ol>
+       <li *ngFor="let name of names">{{ name }}</li>
+   </ol>
+</div>
+
+
+<ng-container *ngIf="authService.isLoggedIn">
+   <div>Profile</div>
+   <div>{{ user.first_name }}</div>
+   <div>{{ user.last_name }}</div>
+   <div>{{ user.email }}</div>
+</ng-container>
+
+<button *ngIf="isLoggedIn" (click)="logout()">logout</button>

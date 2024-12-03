@@ -1,0 +1,8 @@
+<h1>Chats</h1>
+<p>Join one to chat with other users</p>
+
+<ol>
+    <li *ngFor="let chat of chats">
+        <a routerLink="/chats/{{chat._id}}">{{chat.name}}</a>
+    </li>
+</ol>
