@@ -10,7 +10,7 @@ const create = async (req, res) => {
 
         chat.save();
 
-        res.status(201).json({message: 'Chat created successfully'});
+        res.status(201).json({ chat: chat });
     } catch (error) {
         res.status(500).json({error: error.message});
     }
@@ -44,7 +44,7 @@ const addMessageToChat = async (chatId, senderId, content) => {
     if (!chat) throw new Error('Chat not found');
     
     const newMessage = {
-        sender_id: senderId,
+        senderId: senderId,
         content: content
     };
 
@@ -53,6 +53,8 @@ const addMessageToChat = async (chatId, senderId, content) => {
 
     return newMessage;
 };
+
+// add 'update' and 'delete' methods as needed
 
 module.exports = {
     create,

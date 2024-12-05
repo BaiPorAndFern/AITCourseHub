@@ -10,6 +10,6 @@ export class ApiService {
     // makes a GET request to the Express server’s ‘/api/message’ route
     getMessage(): Observable<any> {
         return this.http.get(
-            'http://localhost:3000/api/message');
+            'http://localhost:3500/api/message');
     }
 }

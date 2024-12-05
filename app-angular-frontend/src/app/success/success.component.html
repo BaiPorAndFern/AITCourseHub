@@ -1,7 +1,11 @@
 <p>success works!</p>
 
-<button (click)="changeShowNames()">{{ buttonLabel }}</button>
+<div>
+   <p>Redirecting to chat in {{ countdown }}...</p>
+   <button (click)="goToChat()">Go to Chat Now</button>
+ </div>
 
+<button (click)="changeShowNames()">{{ buttonLabel }}</button>
 
 <div *ngIf="showNames">
    <ol>

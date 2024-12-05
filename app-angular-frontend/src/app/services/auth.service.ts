@@ -6,25 +6,34 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:3000/user';
+  private baseUrl = 'http://localhost:3500/user';
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  // Check if running in the browser
+  private isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
+  }
 
   get isLoggedIn() {
     return !!this.getUser();
   }
 
   getUser() {
-    const user = localStorage.getItem('user');
-
-    return user ? JSON.parse(user) : null;
+    if (this.isBrowser()) {
+      const user = localStorage.getItem('user');
+      return user ? JSON.parse(user) : null;
+    }
+    return null;
   }
 
   getToken() {
-    const token = localStorage.getItem("token")
-  
-    return token ? JSON.parse(token) : null
-   }
+    if (this.isBrowser()) {
+      const token = localStorage.getItem('token');
+      return token ? JSON.parse(token) : null;
+    }
+    return null;
+  }
 
   // Method to register a new user
   register(userData: any): void {

@@ -4,7 +4,7 @@ const userService = require('../services/user.service');
 
 // Define a route
 router.get('/', (req, res) => {
-    res.send('this is user route');// this gets executed when user visit http://localhost:3000/user
+    res.send('this is user route');// this gets executed when user visit http://localhost:3500/user
 });
 
 // Register endpoint

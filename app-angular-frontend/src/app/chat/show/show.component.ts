@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ShowComponent {
   chat: any = {}
 
-  message: string = ''
+  message: string = ""
 
   constructor(public chatService: ChatService, public route: ActivatedRoute) {
   }

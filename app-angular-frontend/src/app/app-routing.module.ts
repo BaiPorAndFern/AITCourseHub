@@ -15,7 +15,8 @@ loadChildren: () => import('./auth/auth-routing.module').then(m => m.AuthRouting
 },
 {
   path: 'success',
-  component: SuccessComponent
+  component: SuccessComponent,
+  canActivate: [AuthGuard]
   }
 ];
 

@@ -8,8 +8,8 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class ChatService {
-  private baseUrl = 'http://localhost:3000/chats';
-  private socket$: WebSocketSubject<any> | null = null;
+  private baseUrl = 'http://localhost:3500/chats';
+  private socket$: WebSocketSubject<any> | null = null; //help estabish connnection with server
   private messagesSubject: Subject<any> = new Subject();
   public messages$: Observable<any> = this.messagesSubject.asObservable();
 
@@ -39,7 +39,7 @@ export class ChatService {
   }
 
   connectToChat(): void {
-    this.socket$ = webSocket('ws://localhost:3000');
+    this.socket$ = webSocket("ws://localhost:3500");
     this.socket$.subscribe(
       (message) => this.messagesSubject.next(message),
       (err) => console.error(err),
