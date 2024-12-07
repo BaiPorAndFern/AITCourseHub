@@ -27,8 +27,6 @@ const mongoURI = 'mongodb://localhost:4500/studentsdb';
 
 // Connect to MongoDB
 mongoose.connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
 })
     .then(() => {
         console.log('Connected to MongoDB');

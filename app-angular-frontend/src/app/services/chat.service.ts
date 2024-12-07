@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 })
 export class ChatService {
   private baseUrl = 'http://localhost:3500/chats';
-  private socket$: WebSocketSubject<any> | null = null; //help estabish connnection with server
+  public socket$: WebSocketSubject<any> | null = null; //help estabish connnection with server
   private messagesSubject: Subject<any> = new Subject();
   public messages$: Observable<any> = this.messagesSubject.asObservable();
 
@@ -39,12 +39,27 @@ export class ChatService {
   }
 
   connectToChat(): void {
+    if (this.socket$) {
+      console.log('Closing previous WebSocket connection');
+      this.socket$.complete(); // Close the existing connection
+    }
+  
+    console.log('Establishing new WebSocket connection');
     this.socket$ = webSocket("ws://localhost:3500");
+  
     this.socket$.subscribe(
       (message) => this.messagesSubject.next(message),
-      (err) => console.error(err),
+      (err) => console.error('WebSocket error:', err),
       () => console.warn('WebSocket connection closed')
     );
+  }
+
+  disconnectFromChat(): void {
+    if (this.socket$) {
+      console.log('Disconnecting WebSocket connection');
+      this.socket$.complete(); // Close the WebSocket connection
+      this.socket$ = null; // Reset the WebSocket object
+    }
   }
 
   sendMessage(chatId: string, content: string): void {
