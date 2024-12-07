@@ -1,7 +1,12 @@
 <main class="main">
-    <h1>Students App</h1>
+  <h1>Students App</h1>
+  <div *ngIf="isLoggedIn; else authLinks">
+    <button (click)="logout()">Logout</button>
+  </div>
+  <ng-template #authLinks>
     <a href="/auth/login">Login</a>
     <br />
     <a href="/auth/signup">Signup</a>
-    </main>
-    <router-outlet />
+  </ng-template>
+</main>
+<router-outlet></router-outlet>

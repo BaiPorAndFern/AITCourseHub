@@ -51,10 +51,6 @@ export class SuccessComponent implements OnInit, OnDestroy {
     this.showNames = !this.showNames; // Toggle showNames state
   }
 
-  logout(): void {
-    this.authService.logout(); // Perform logout
-  }
-
   // Countdown timer logic
   private startCountdown(): void {
     this.intervalId = setInterval(() => {
